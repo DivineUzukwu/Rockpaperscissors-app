@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      background-color: #f1f1f1;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #333;
+      margin-top: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin: 0.5rem;
+      font-size: 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #rock {
+      background-color: #333;
+      color: #fff;
+    }
+    #paper {
+      background-color: #c3c3c3;
+      color: #333;
+    }
+    #scissors {
+      background-color: #d94141;
+      color: #fff;
+    }
+    .result {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  <div class="btn-container">
+    <button class="btn" id="rock">Rock</button>
+    <button class="btn" id="paper">Paper</button>
+    <button class="btn" id="scissors">Scissors</button>
+  </div>
+  <div class="result"></div>
+  <script>
+    const buttons = document.querySelectorAll('.btn');
+    const result = document.querySelector('.result');
+    const choices = ['rock', 'paper', 'scissors'];
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const playerChoice = button.id;
+        const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+        const outcome = getResult(playerChoice, computerChoice);
+        result.textContent = outcome;
+      });
+    });
+
+    function getResult(playerChoice, computerChoice) {
+      if (playerChoice === computerChoice) {
+        return "It's a tie!";
+      } else if ((playerChoice === 'rock' && computerChoice === 'scissors') || (playerChoice === 'paper' && computerChoice === 'rock') || (playerChoice === 'scissors' && computerChoice === 'paper')) {
+        return "You win!";
+      } else {
+        return "You lose!";
+      }
+    }
+  </script>
+</body>
+</html>
